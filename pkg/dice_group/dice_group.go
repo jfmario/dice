@@ -2,6 +2,9 @@
 package dice_group
 
 import (
+
+	"fmt"
+	
 	"github.com/jfmario/dice/pkg/die"
 )
 
@@ -93,10 +96,13 @@ func (dg *DiceGroup) KeepHighestN(n int) {
 // Value returns the current value of the dice group, regardless of whether
 // or not all die have been rolled.
 func (dg *DiceGroup) Value() int {
+
 	v := 0
 	for _, d := range dg.dice {
 		v = v + d.Face()
 	}
+	
+	return v
 }
 
 // Roll rolls all dice in the group that have not been rolled yet.
@@ -111,7 +117,11 @@ func (dg *DiceGroup) Roll() (int, error) {
 		d.Roll()
 	}
 
-	return dg.Value()
+	if isError {
+		return dg.Value(), fmt.Errorf("No dice values were changed.")
+	}
+
+	return dg.Value(), nil
 }
 
 // Reroll rolls all dice even if they have already been rolled.
@@ -158,7 +168,7 @@ func (dg *DiceGroup) identifyHighestAndLowest() {
 	}
 	highestValue := dg.dice[0].Face()
 	lowestValue := dg.dice[0].Face()
-	for i, d := dg.dice {
+	for i, d := range dg.dice {
 		face := d.Face()
 		if face > highestValue {
 			highestValue = face
