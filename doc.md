@@ -25,11 +25,15 @@ import "github.com/jfmario/dice"
 func Compute(diceString string) (int, error)
 ```
 
+Compute is a function that parses a string like "2d6 \+ 1".
+
 ## func D10
 
 ```go
 func D10() *die.Die
 ```
+
+D10 returns a new die with ten sides.
 
 ## func D12
 
@@ -37,11 +41,15 @@ func D10() *die.Die
 func D12() *die.Die
 ```
 
+D12 returns a new die with twelve sides.
+
 ## func D20
 
 ```go
 func D20() *die.Die
 ```
+
+D20 returns a new die with twenty sides.
 
 ## func D4
 
@@ -49,11 +57,15 @@ func D20() *die.Die
 func D4() *die.Die
 ```
 
+D4 returns a new die with four sides.
+
 ## func D6
 
 ```go
 func D6() *die.Die
 ```
+
+D6 returns a new die with six sides.
 
 ## func D8
 
@@ -61,17 +73,352 @@ func D6() *die.Die
 func D8() *die.Die
 ```
 
+D8 returns a new die with eight sides.
+
 ## func NewDiceGroup
 
 ```go
 func NewDiceGroup() *dice_group.DiceGroup
 ```
 
+New creates a new, empty dice group
+
 ## func NewDie
 
 ```go
 func NewDie(sides int) *die.Die
 ```
+
+NewDie creates a die with the given number of sides.
+
+# compute
+
+```go
+import "github.com/jfmario/dice/internal/compute"
+```
+
+## Index
+
+- [func Compute(diceString string) (int, error)](<#func-compute>)
+
+
+## func Compute
+
+```go
+func Compute(diceString string) (int, error)
+```
+
+Compute is a recursive function that parses a string like "2d6 \+ 1".
+
+# dice\_group
+
+```go
+import "github.com/jfmario/dice/pkg/dice_group"
+```
+
+## Index
+
+- [type DiceGroup](<#type-dicegroup>)
+  - [func New() *DiceGroup](<#func-new>)
+  - [func (dg *DiceGroup) AddDice(n, s int)](<#func-dicegroup-adddice>)
+  - [func (dg *DiceGroup) AddDie(d *die.Die)](<#func-dicegroup-adddie>)
+  - [func (dg *DiceGroup) AvgValue() float64](<#func-dicegroup-avgvalue>)
+  - [func (dg *DiceGroup) DropHighest()](<#func-dicegroup-drophighest>)
+  - [func (dg *DiceGroup) DropHighestN(n int)](<#func-dicegroup-drophighestn>)
+  - [func (dg *DiceGroup) DropLowest()](<#func-dicegroup-droplowest>)
+  - [func (dg *DiceGroup) DropLowestN(n int)](<#func-dicegroup-droplowestn>)
+  - [func (dg *DiceGroup) KeepHighest()](<#func-dicegroup-keephighest>)
+  - [func (dg *DiceGroup) KeepHighestN(n int)](<#func-dicegroup-keephighestn>)
+  - [func (dg *DiceGroup) KeepLowest()](<#func-dicegroup-keeplowest>)
+  - [func (dg *DiceGroup) KeepLowestN(n int)](<#func-dicegroup-keeplowestn>)
+  - [func (dg *DiceGroup) MaxValue() int](<#func-dicegroup-maxvalue>)
+  - [func (dg *DiceGroup) MinValue() int](<#func-dicegroup-minvalue>)
+  - [func (dg *DiceGroup) Reroll() int](<#func-dicegroup-reroll>)
+  - [func (dg *DiceGroup) Roll() (int, error)](<#func-dicegroup-roll>)
+  - [func (dg *DiceGroup) Value() int](<#func-dicegroup-value>)
+
+
+## type DiceGroup
+
+```go
+type DiceGroup struct {
+    // contains filtered or unexported fields
+}
+```
+
+### func New
+
+```go
+func New() *DiceGroup
+```
+
+New creates a new, empty dice group
+
+### func \(\*DiceGroup\) AddDice
+
+```go
+func (dg *DiceGroup) AddDice(n, s int)
+```
+
+AddDice n\-number of s\-sided dice to the group.
+
+### func \(\*DiceGroup\) AddDie
+
+```go
+func (dg *DiceGroup) AddDie(d *die.Die)
+```
+
+AddDie adds a die to the dice group.
+
+### func \(\*DiceGroup\) AvgValue
+
+```go
+func (dg *DiceGroup) AvgValue() float64
+```
+
+AvgValue returns the average value of the group if rolled.
+
+### func \(\*DiceGroup\) DropHighest
+
+```go
+func (dg *DiceGroup) DropHighest()
+```
+
+DropHighest removes the highest die from the group. Does nothing if there are no remaining dice.
+
+### func \(\*DiceGroup\) DropHighestN
+
+```go
+func (dg *DiceGroup) DropHighestN(n int)
+```
+
+DropHighestN removes the highest n dice from the group.
+
+### func \(\*DiceGroup\) DropLowest
+
+```go
+func (dg *DiceGroup) DropLowest()
+```
+
+DropLowest removes the lowest die from the group. Does nothing if there are no remaining dice.
+
+### func \(\*DiceGroup\) DropLowestN
+
+```go
+func (dg *DiceGroup) DropLowestN(n int)
+```
+
+DropLowestN removes the lowest n dice from the group.
+
+### func \(\*DiceGroup\) KeepHighest
+
+```go
+func (dg *DiceGroup) KeepHighest()
+```
+
+KeepHighest keeps the highest die only, dropping the others.
+
+### func \(\*DiceGroup\) KeepHighestN
+
+```go
+func (dg *DiceGroup) KeepHighestN(n int)
+```
+
+KeepHighestN keeps the highest n die, dropping the others.
+
+### func \(\*DiceGroup\) KeepLowest
+
+```go
+func (dg *DiceGroup) KeepLowest()
+```
+
+KeepLowest keeps the lowest die only, dropping the others.
+
+### func \(\*DiceGroup\) KeepLowestN
+
+```go
+func (dg *DiceGroup) KeepLowestN(n int)
+```
+
+KeepLowestN keeps the lowest n die, dropping the others.
+
+### func \(\*DiceGroup\) MaxValue
+
+```go
+func (dg *DiceGroup) MaxValue() int
+```
+
+MaxValue returns the highest possible result of the group, if rolled.
+
+### func \(\*DiceGroup\) MinValue
+
+```go
+func (dg *DiceGroup) MinValue() int
+```
+
+MinValue returns the lowest possible result of the group, if rolled.
+
+### func \(\*DiceGroup\) Reroll
+
+```go
+func (dg *DiceGroup) Reroll() int
+```
+
+Reroll rolls all dice even if they have already been rolled.
+
+### func \(\*DiceGroup\) Roll
+
+```go
+func (dg *DiceGroup) Roll() (int, error)
+```
+
+Roll rolls all dice in the group that have not been rolled yet. An error is only returned if no dice are changed.
+
+### func \(\*DiceGroup\) Value
+
+```go
+func (dg *DiceGroup) Value() int
+```
+
+Value returns the current value of the dice group, regardless of whether or not all die have been rolled.
+
+# die
+
+```go
+import "github.com/jfmario/dice/pkg/die"
+```
+
+## Index
+
+- [type Die](<#type-die>)
+  - [func D10() *Die](<#func-d10>)
+  - [func D12() *Die](<#func-d12>)
+  - [func D20() *Die](<#func-d20>)
+  - [func D4() *Die](<#func-d4>)
+  - [func D6() *Die](<#func-d6>)
+  - [func D8() *Die](<#func-d8>)
+  - [func New(sides int) *Die](<#func-new>)
+  - [func (d *Die) Avg() float64](<#func-die-avg>)
+  - [func (d *Die) Face() int](<#func-die-face>)
+  - [func (d *Die) HasBeenRolled() bool](<#func-die-hasbeenrolled>)
+  - [func (d *Die) Reroll() int](<#func-die-reroll>)
+  - [func (d *Die) Roll() (int, error)](<#func-die-roll>)
+  - [func (d *Die) Sides() int](<#func-die-sides>)
+
+
+## type Die
+
+An struct representing a die \(a single dice\).
+
+```go
+type Die struct {
+    // contains filtered or unexported fields
+}
+```
+
+### func D10
+
+```go
+func D10() *Die
+```
+
+D10 returns a new die with ten sides.
+
+### func D12
+
+```go
+func D12() *Die
+```
+
+D12 returns a new die with twelve sides.
+
+### func D20
+
+```go
+func D20() *Die
+```
+
+D20 returns a new die with twenty sides.
+
+### func D4
+
+```go
+func D4() *Die
+```
+
+D4 returns a new die with four sides.
+
+### func D6
+
+```go
+func D6() *Die
+```
+
+D6 returns a new die with six sides.
+
+### func D8
+
+```go
+func D8() *Die
+```
+
+D8 returns a new die with eight sides.
+
+### func New
+
+```go
+func New(sides int) *Die
+```
+
+New creates a die with the given number of sides.
+
+### func \(\*Die\) Avg
+
+```go
+func (d *Die) Avg() float64
+```
+
+Avg returns the average value of rolls of this die as a float64.
+
+### func \(\*Die\) Face
+
+```go
+func (d *Die) Face() int
+```
+
+Face returns the current face value of the die. This will be 0 if the die has not been rolled.
+
+### func \(\*Die\) HasBeenRolled
+
+```go
+func (d *Die) HasBeenRolled() bool
+```
+
+HasBeenRolled returns true if the die has been rolled.
+
+### func \(\*Die\) Reroll
+
+```go
+func (d *Die) Reroll() int
+```
+
+Reroll rolls the die, even if it is already in a rolled state, and returns the face value.
+
+### func \(\*Die\) Roll
+
+```go
+func (d *Die) Roll() (int, error)
+```
+
+Roll will roll the die only if it has not been rolled and will return the current face of the die. An error will be returned if the die was already rolled.
+
+### func \(\*Die\) Sides
+
+```go
+func (d *Die) Sides() int
+```
+
+Sides returns the number of sides that the die has.
 
 
 

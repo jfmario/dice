@@ -67,6 +67,7 @@ func findFirst(str string, subs []string) (int, string) {
 	}
 }
 
+// Compute is a recursive function that parses a string like "2d6 + 1".
 func Compute(diceString string) (int, error) {
 
 	diceString = strings.Trim(diceString, " ")
