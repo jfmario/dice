@@ -61,7 +61,7 @@ func (dg *DiceGroup) DropHighest() {
 	}
 	dg.identifyHighestAndLowest()
 	dg.dice[dg.highestIdx] = dg.dice[len(dg.dice)-1]
-	dg.dice = dg.dice[:len(dg.dice)]
+	dg.dice = dg.dice[:len(dg.dice)-1]
 }
 
 // DropHighestN removes the highest n dice from the group.
