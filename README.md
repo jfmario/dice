@@ -17,6 +17,10 @@ go get github.com/jfmario/dice
 
 ## Usage
 
+The go doc for this module is in [docs.md](./doc.md).
+
+Here are some quick examples:
+
 **Roll a Die**
 
 ```go
