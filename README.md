@@ -17,7 +17,7 @@ go get github.com/jfmario/dice
 
 ## Usage
 
-The go doc for this module is in [docs.md](./doc.md).
+The go doc for this module is in [doc.md](./doc.md).
 
 Here are some quick examples:
 
