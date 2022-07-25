@@ -22,7 +22,7 @@ go get github.com/jfmario/dice
 ```go
 d := dice.D6()
 d.Roll()
-fmt.Println(d.Value())
+fmt.Println(d.Face())
 ```
 
 **Creating Die**
