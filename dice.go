@@ -6,7 +6,7 @@ import (
 	"github.com/jfmario/dice/pkg/dice_group"
 	"github.com/jfmario/dice/pkg/die"
 )
-
+6
 // NewDie creates a die with the given number of sides.
 func NewDie(sides int) *die.Die {
 	return die.New(sides)
